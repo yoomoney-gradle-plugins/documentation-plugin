@@ -12,6 +12,7 @@ import org.gradle.api.Project
 class DocumentationRenderPlugin : Plugin<Project> {
     override fun apply(target: Project) {
         with(target) {
+            pluginManager.apply("org.asciidoctor.jvm.base")
             val pluginSettings = extensions.create("documentations", DocumentationRenderExtension::class.java)
             afterEvaluate {
                 tasks.create("documentationValidation", DocumentationRenderValidation::class.java) {

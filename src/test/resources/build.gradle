@@ -1,6 +1,5 @@
 plugins {
     id 'yamoney-documentation-render-plugin'
-    id 'org.asciidoctor.jvm.base' version "3.3.0"
 }
 
 repositories {

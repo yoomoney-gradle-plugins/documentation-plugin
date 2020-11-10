@@ -10,5 +10,6 @@ repositories {
     dependencies {
         classpath 'ru.yandex.money.gradle.plugins:yamoney-gradle-project-plugin:' +
                 System.getProperty("platformGradleProjectVersion")
+        classpath 'org.asciidoctor:asciidoctor-gradle-jvm:3.3.0'
     }
 }
