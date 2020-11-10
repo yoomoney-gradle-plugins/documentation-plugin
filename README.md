@@ -49,17 +49,14 @@ buildscript {
         maven { url 'https://nexus.yamoney.ru/repository/gradle-plugins/' }
     }
     dependencies {
-        classpath 'org.asciidoctor:asciidoctor-gradle-jvm:3.3.0'
         classpath 'ru.yandex.money.gradle.plugins:yamoney-documentation-render-plugin:0.+'
     }
 }
-apply plugin: 'org.asciidoctor.jvm.base'
 apply plugin: 'yamoney-documentation-render-plugin'
 documentations {
     rootFiles = ['department-book.adoc', 'developer-book.adoc']
 }
 ```
 
-Подключение плагина ```org.asciidoctor.jvm.base``` необходимо для того, чтобы был создан extension asciidoctorj, который используется
 в задаче ```documentationRender```.
 В ```rootFiles``` указываются файлы документации, которые должны быть сконвертированы в html файлы
