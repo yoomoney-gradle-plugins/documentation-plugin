@@ -14,7 +14,7 @@ class DocumentationRenderPlugin : Plugin<Project> {
     override fun apply(target: Project) {
         with(target) {
             pluginManager.apply(AsciidoctorJBasePlugin::class.java)
-            val pluginSettings = extensions.create("documentations", DocumentationRenderExtension::class.java)
+            val pluginSettings = extensions.create("documentation", DocumentationRenderExtension::class.java)
             afterEvaluate {
                 tasks.create("documentationValidation", DocumentationRenderValidation::class.java) {
                     it.group = "documentation"
