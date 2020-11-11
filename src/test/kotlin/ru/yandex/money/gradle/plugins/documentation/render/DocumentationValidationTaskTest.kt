@@ -9,11 +9,11 @@ import org.junit.rules.TemporaryFolder
 import java.nio.file.Paths
 
 /**
- * Тесты Gradle task'и DocumentationRenderValidationTask
+ * Тесты Gradle task'и DocumentationValidationTask
  * @author Igor Popov
  * @since 09.11.2020
  */
-class DocumentationRenderValidationTaskTest {
+class DocumentationValidationTaskTest {
 
     @get:Rule
     val testProjectDir = TemporaryFolder()
@@ -24,7 +24,7 @@ class DocumentationRenderValidationTaskTest {
         val docsDir = testProjectDir.newFolder("docs")
 
         val buildFile = testProjectDir.newFile("build.gradle")
-        buildFile.writeText(DocumentationRenderValidationTaskTest::class.java.getResource("/build.gradle").readText())
+        buildFile.writeText(DocumentationValidationTaskTest::class.java.getResource("/build.gradle").readText())
 
         copyDocsFrom(docsDir.absolutePath, "/validation/failed")
 
@@ -43,11 +43,11 @@ class DocumentationRenderValidationTaskTest {
     private fun copyDocsFrom(dest: String, from: String) {
         Paths.get(dest, "c").toFile().mkdir()
         Paths.get(dest, "c", "c.adoc").toFile()
-                .writeText(DocumentationRenderValidationTaskTest::class.java.getResource("$from/c/c.adoc").readText())
+                .writeText(DocumentationValidationTaskTest::class.java.getResource("$from/c/c.adoc").readText())
         Paths.get(dest, "a.adoc").toFile()
-                .writeText(DocumentationRenderValidationTaskTest::class.java.getResource("$from/a.adoc").readText())
+                .writeText(DocumentationValidationTaskTest::class.java.getResource("$from/a.adoc").readText())
         Paths.get(dest, "b.adoc").toFile()
-                .writeText(DocumentationRenderValidationTaskTest::class.java.getResource("$from/b.adoc").readText())
+                .writeText(DocumentationValidationTaskTest::class.java.getResource("$from/b.adoc").readText())
     }
 
     @Test
@@ -56,7 +56,7 @@ class DocumentationRenderValidationTaskTest {
         val docsDir = testProjectDir.newFolder("docs")
 
         val buildFile = testProjectDir.newFile("build.gradle")
-        buildFile.writeText(DocumentationRenderValidationTaskTest::class.java.getResource("/build.gradle").readText())
+        buildFile.writeText(DocumentationValidationTaskTest::class.java.getResource("/build.gradle").readText())
 
         copyDocsFrom(docsDir.absolutePath, "/validation/success")
 

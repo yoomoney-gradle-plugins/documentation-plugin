@@ -15,7 +15,7 @@ import java.nio.file.Paths
  * @author Igor Popov
  * @since 09.11.2020
  */
-open class DocumentationRenderConvertDiagramTask : DefaultTask() {
+open class DocumentationConvertDiagramTask : DefaultTask() {
     @TaskAction
     fun taskAction() {
         project.fileTree(".").filter {

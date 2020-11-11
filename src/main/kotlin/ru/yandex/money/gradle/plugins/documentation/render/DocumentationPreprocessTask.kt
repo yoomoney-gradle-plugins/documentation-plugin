@@ -10,7 +10,7 @@ import java.nio.file.Files
  * @author Igor Popov
  * @since 06.11.2020
  */
-open class DocumentationRenderPreprocessTask : DefaultTask() {
+open class DocumentationPreprocessTask : DefaultTask() {
     @TaskAction
     fun taskAction() {
         val rootPath = project.file(".").toPath()

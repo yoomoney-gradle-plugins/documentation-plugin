@@ -10,7 +10,7 @@ gradlePlugin {
     plugins {
         componentReleasePlugin {
             id = pluginId
-            implementationClass = 'ru.yandex.money.gradle.plugins.documentation.render.DocumentationRenderPlugin'
+            implementationClass = 'ru.yandex.money.gradle.plugins.documentation.render.DocumentationPlugin'
         }
     }
 }
@@ -29,8 +29,4 @@ dependencies {
 
     testImplementation gradleTestKit(),
             'ru.yandex.money.common:yamoney-test-utils:27.5.0'
-
-    testImplementation('org.spockframework:spock-core:1.3-groovy-2.5') {
-        exclude module: 'groovy-all'
-    }
 }

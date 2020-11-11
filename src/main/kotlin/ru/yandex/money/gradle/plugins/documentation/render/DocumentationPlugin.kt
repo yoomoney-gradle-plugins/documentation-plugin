@@ -10,20 +10,20 @@ import org.gradle.api.Project
  * @author Igor Popov
  * @since 06.11.2020
  */
-class DocumentationRenderPlugin : Plugin<Project> {
+class DocumentationPlugin : Plugin<Project> {
     override fun apply(target: Project) {
         with(target) {
             pluginManager.apply(AsciidoctorJBasePlugin::class.java)
-            val pluginSettings = extensions.create("documentation", DocumentationRenderExtension::class.java)
-            tasks.create("documentationValidation", DocumentationRenderValidation::class.java) {
+            val pluginSettings = extensions.create("documentation", DocumentationExtension::class.java)
+            tasks.create("documentationValidation", DocumentationValidation::class.java) {
                 it.group = "documentation"
                 it.description = "Validate documentation files"
             }
-            tasks.create("convertDiagrams", DocumentationRenderConvertDiagramTask::class.java) {
+            tasks.create("convertDiagrams", DocumentationConvertDiagramTask::class.java) {
                 it.group = "documentation"
                 it.description = "Convert plantuml diagrams into png images"
             }
-            tasks.create("documentationPreprocess", DocumentationRenderPreprocessTask::class.java) {
+            tasks.create("documentationPreprocess", DocumentationPreprocessTask::class.java) {
                 it.group = "documentation"
                 it.description = "Make a preprocessing for the documentation files"
             }
@@ -31,7 +31,7 @@ class DocumentationRenderPlugin : Plugin<Project> {
                 it.sourceDir(file("."))
                 it.setOutputDir(file("."))
             }
-            val commitEditedDocumentation = tasks.create("commitEditedDocumentation", DocumentationRenderCommitTask::class.java) {
+            val commitEditedDocumentation = tasks.create("commitEditedDocumentation", DocumentationCommitTask::class.java) {
                 it.group = "documentation"
                 it.description = "Commit modified documentations"
             }

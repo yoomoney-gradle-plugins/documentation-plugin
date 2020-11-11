@@ -10,11 +10,11 @@ import org.junit.rules.TemporaryFolder
 import java.nio.file.Paths
 
 /**
- * Тесты Gradle task'и DocumentationRenderPreprocessTask
+ * Тесты Gradle task'и DocumentationPreprocessTask
  * @author Igor Popov
  * @since 09.11.2020
  */
-class DocumentationRenderPreprocessTaskTest {
+class DocumentationPreprocessTaskTest {
 
     @get:Rule
     val testProjectDir = TemporaryFolder()
@@ -25,20 +25,20 @@ class DocumentationRenderPreprocessTaskTest {
         val docsDir = testProjectDir.newFolder("docs")
 
         val buildFile = testProjectDir.newFile("build.gradle")
-        buildFile.writeText(DocumentationRenderValidationTaskTest::class.java.getResource("/build.gradle").readText())
+        buildFile.writeText(DocumentationValidationTaskTest::class.java.getResource("/build.gradle").readText())
 
         Paths.get(docsDir.absolutePath, "a.adoc").toFile()
-                .writeText(DocumentationRenderPreprocessTaskTest::class.java.getResource("/preprocess/raw/a.adoc").readText())
+                .writeText(DocumentationPreprocessTaskTest::class.java.getResource("/preprocess/raw/a.adoc").readText())
 
         Paths.get(docsDir.absolutePath, "b").toFile().mkdir()
         Paths.get(docsDir.absolutePath, "b", "b.adoc").toFile()
-                .writeText(DocumentationRenderPreprocessTaskTest::class.java.getResource("/preprocess/raw/b/b.adoc").readText())
+                .writeText(DocumentationPreprocessTaskTest::class.java.getResource("/preprocess/raw/b/b.adoc").readText())
         Paths.get(docsDir.absolutePath, "b", "b.txt").toFile()
-                .writeText(DocumentationRenderPreprocessTaskTest::class.java.getResource("/preprocess/raw/b/b.txt").readText())
+                .writeText(DocumentationPreprocessTaskTest::class.java.getResource("/preprocess/raw/b/b.txt").readText())
 
         Paths.get(docsDir.absolutePath, "b", "c").toFile().mkdir()
         Paths.get(docsDir.absolutePath, "b", "c", "c.adoc").toFile()
-                .writeText(DocumentationRenderPreprocessTaskTest::class.java.getResource("/preprocess/raw/b/c/c.adoc").readText())
+                .writeText(DocumentationPreprocessTaskTest::class.java.getResource("/preprocess/raw/b/c/c.adoc").readText())
 
         // when
         val result = GradleRunner.create()
@@ -52,12 +52,12 @@ class DocumentationRenderPreprocessTaskTest {
         assertEquals(TaskOutcome.SUCCESS, result.task(":documentationPreprocess")?.outcome)
 
         Paths.get(docsDir.absolutePath, "a.adoc").toFile().readText() `should be equal to`
-                DocumentationRenderPreprocessTaskTest::class.java.getResource("/preprocess/processed/a.adoc").readText()
+                DocumentationPreprocessTaskTest::class.java.getResource("/preprocess/processed/a.adoc").readText()
         Paths.get(docsDir.absolutePath, "b", "b.adoc").toFile().readText() `should be equal to`
-                DocumentationRenderPreprocessTaskTest::class.java.getResource("/preprocess/processed/b/b.adoc").readText()
+                DocumentationPreprocessTaskTest::class.java.getResource("/preprocess/processed/b/b.adoc").readText()
         Paths.get(docsDir.absolutePath, "b", "b.txt").toFile().readText() `should be equal to`
-                DocumentationRenderPreprocessTaskTest::class.java.getResource("/preprocess/processed/b/b.txt").readText()
+                DocumentationPreprocessTaskTest::class.java.getResource("/preprocess/processed/b/b.txt").readText()
         Paths.get(docsDir.absolutePath, "b", "c", "c.adoc").toFile().readText() `should be equal to`
-                DocumentationRenderPreprocessTaskTest::class.java.getResource("/preprocess/processed/b/c/c.adoc").readText()
+                DocumentationPreprocessTaskTest::class.java.getResource("/preprocess/processed/b/c/c.adoc").readText()
     }
 }

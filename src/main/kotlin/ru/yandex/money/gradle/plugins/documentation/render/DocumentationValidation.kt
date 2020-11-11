@@ -10,7 +10,7 @@ import java.nio.file.Files
  * @author Igor Popov
  * @since 06.11.2020
  */
-open class DocumentationRenderValidation : DefaultTask() {
+open class DocumentationValidation : DefaultTask() {
     companion object {
         val ANCHOR_PATTERN = "^\\[\\[([^]]+)]]$".toRegex()
     }

@@ -17,7 +17,7 @@ import java.util.Objects.requireNonNull
  * @author Igor Popov
  * @since 06.11.2020
  */
-open class DocumentationRenderCommitTask : DefaultTask() {
+open class DocumentationCommitTask : DefaultTask() {
     companion object {
         const val GIT_USER_EMAIL = "SvcReleaserBackend@yamoney.ru"
         const val GIT_USER_NAME = "SvcReleaserBackend"

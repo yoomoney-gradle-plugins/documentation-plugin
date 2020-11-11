@@ -5,7 +5,7 @@ package ru.yandex.money.gradle.plugins.documentation.render
  * @author Igor Popov
  * @since 06.11.2020
  */
-open class DocumentationRenderExtension {
+open class DocumentationExtension {
     /**
      * Рутовые файлы, которые необходимо отрендерить в .html
      */
