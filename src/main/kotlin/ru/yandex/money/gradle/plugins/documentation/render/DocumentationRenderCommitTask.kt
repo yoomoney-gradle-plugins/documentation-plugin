@@ -64,7 +64,7 @@ open class DocumentationRenderCommitTask : DefaultTask() {
     private fun commit(git: GitRepo) {
         try {
             project.logger.lifecycle("Commit files from the index")
-            val command = git.commit().setMessage("Commit with a rendered new or modified docs")
+            val command = git.commit().setMessage("[Gradle Documentation Plugin] Commit with a rendered new or modified docs")
             rootFiles.forEach { command.setOnly(it.replace(".adoc", ".html")) }
             git.status().call().added
                     .filter { it.endsWith(".png") }
