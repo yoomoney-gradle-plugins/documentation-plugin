@@ -15,31 +15,31 @@ class DocumentationRenderPlugin : Plugin<Project> {
         with(target) {
             pluginManager.apply(AsciidoctorJBasePlugin::class.java)
             val pluginSettings = extensions.create("documentation", DocumentationRenderExtension::class.java)
-                tasks.create("documentationValidation", DocumentationRenderValidation::class.java) {
-                    it.group = "documentation"
-                    it.description = "Validate documentation files"
-                }
-                tasks.create("convertDiagrams", DocumentationRenderConvertDiagramTask::class.java) {
-                    it.group = "documentation"
-                    it.description = "Convert plantuml diagrams into png images"
-                }
-                tasks.create("documentationPreprocess", DocumentationRenderPreprocessTask::class.java) {
-                    it.group = "documentation"
-                    it.description = "Make a preprocessing for the documentation files"
-                }
+            tasks.create("documentationValidation", DocumentationRenderValidation::class.java) {
+                it.group = "documentation"
+                it.description = "Validate documentation files"
+            }
+            tasks.create("convertDiagrams", DocumentationRenderConvertDiagramTask::class.java) {
+                it.group = "documentation"
+                it.description = "Convert plantuml diagrams into png images"
+            }
+            tasks.create("documentationPreprocess", DocumentationRenderPreprocessTask::class.java) {
+                it.group = "documentation"
+                it.description = "Make a preprocessing for the documentation files"
+            }
+            val documentationRender = tasks.create("documentationRender", AsciidoctorTask::class.java) {
+                it.sourceDir(file("."))
+                it.setOutputDir(file("."))
+            }
+            val commitEditedDocumentation = tasks.create("commitEditedDocumentation", DocumentationRenderCommitTask::class.java) {
+                it.group = "documentation"
+                it.description = "Commit modified documentations"
+            }
             afterEvaluate {
-                tasks.create("documentationRender", AsciidoctorTask::class.java) {
-                    it.sourceDir(file("."))
-                    it.setOutputDir(file("."))
-                    it.sources {
-                        pluginSettings.rootFiles.forEach { file -> it.include(file) }
-                    }
+                documentationRender.sources {
+                    pluginSettings.rootFiles.forEach { file -> it.include(file) }
                 }
-                tasks.create("commitEditedDocumentation", DocumentationRenderCommitTask::class.java) {
-                    it.group = "documentation"
-                    it.description = "Commit modified documentations"
-                    it.rootFiles = pluginSettings.rootFiles
-                }
+                commitEditedDocumentation.rootFiles = pluginSettings.rootFiles
             }
         }
     }
