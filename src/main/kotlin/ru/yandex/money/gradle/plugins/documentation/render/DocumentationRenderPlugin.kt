@@ -15,7 +15,6 @@ class DocumentationRenderPlugin : Plugin<Project> {
         with(target) {
             pluginManager.apply(AsciidoctorJBasePlugin::class.java)
             val pluginSettings = extensions.create("documentation", DocumentationRenderExtension::class.java)
-            afterEvaluate {
                 tasks.create("documentationValidation", DocumentationRenderValidation::class.java) {
                     it.group = "documentation"
                     it.description = "Validate documentation files"
@@ -28,6 +27,7 @@ class DocumentationRenderPlugin : Plugin<Project> {
                     it.group = "documentation"
                     it.description = "Make a preprocessing for the documentation files"
                 }
+            afterEvaluate {
                 tasks.create("documentationRender", AsciidoctorTask::class.java) {
                     it.sourceDir(file("."))
                     it.setOutputDir(file("."))
