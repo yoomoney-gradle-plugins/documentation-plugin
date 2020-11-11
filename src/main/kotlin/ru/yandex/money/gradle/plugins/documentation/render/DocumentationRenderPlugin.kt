@@ -1,5 +1,6 @@
 package ru.yandex.money.gradle.plugins.documentation.render
 
+import org.asciidoctor.gradle.jvm.AsciidoctorJBasePlugin
 import org.asciidoctor.gradle.jvm.AsciidoctorTask
 import org.gradle.api.Plugin
 import org.gradle.api.Project
@@ -12,7 +13,7 @@ import org.gradle.api.Project
 class DocumentationRenderPlugin : Plugin<Project> {
     override fun apply(target: Project) {
         with(target) {
-            pluginManager.apply("org.asciidoctor.jvm.base")
+            pluginManager.apply(AsciidoctorJBasePlugin::class.java)
             val pluginSettings = extensions.create("documentations", DocumentationRenderExtension::class.java)
             afterEvaluate {
                 tasks.create("documentationValidation", DocumentationRenderValidation::class.java) {

@@ -5,7 +5,7 @@ buildscript {
 apply plugin: 'yamoney-gradle-project-plugin'
 apply plugin: 'yamoney-kotlin-module-plugin'
 
-pluginId = 'yamoney-documentation-render-plugin'
+pluginId = 'yamoney-documentation-plugin'
 gradlePlugin {
     plugins {
         componentReleasePlugin {
