@@ -1,0 +1,9 @@
+plugins {
+    id 'yamoney-documentation-plugin'
+}
+
+repositories {
+    maven { url 'http://nexus.yamoney.ru/content/repositories/central/' }
+    maven { url 'http://nexus.yamoney.ru/content/repositories/releases/' }
+    maven { url 'http://nexus.yamoney.ru/content/repositories/jcenter.bintray.com/' }
+}
