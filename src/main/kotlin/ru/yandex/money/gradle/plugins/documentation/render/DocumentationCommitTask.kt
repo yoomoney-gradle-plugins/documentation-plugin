@@ -66,7 +66,10 @@ open class DocumentationCommitTask : DefaultTask() {
             project.logger.lifecycle("Commit files from the index")
             val command = git.commit().setMessage("[Gradle Documentation Plugin] Commit with a rendered new or modified docs")
             rootFiles.forEach { command.setOnly(it.replace(".adoc", ".html")) }
-            git.status().call().added
+            val statusResult = git.status().call()
+            statusResult.added
+                    .plus(statusResult.modified)
+                    .plus(statusResult.changed)
                     .filter { it.endsWith(".png") }
                     .forEach { command.setOnly(it) }
             command.call()

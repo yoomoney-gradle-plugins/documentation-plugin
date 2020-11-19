@@ -19,7 +19,7 @@ open class DocumentationConvertDiagramTask : DefaultTask() {
     @TaskAction
     fun taskAction() {
         project.fileTree(".").filter {
-            it.name.endsWith(".puml") || it.name.endsWith(".plantuml")
+            it.parentFile.name == "resources" && (it.name.endsWith(".puml") || it.name.endsWith(".plantuml"))
         }.forEach { sourceFile ->
             val sourceFileName = sourceFile.name.substring(0, sourceFile.name.lastIndexOf('.')) + ".png"
             val compiledFile = project.file(Paths.get(sourceFile.parent, sourceFileName).toString())
@@ -27,10 +27,11 @@ open class DocumentationConvertDiagramTask : DefaultTask() {
                 if (!compiledFile.exists()) {
                     compiledFile.createNewFile()
                 }
+                System.setProperty("plantuml.include.path", sourceFile.parent)
                 val source = SourceStringReader(sourceFile.readText())
-                val out = FileOutputStream(compiledFile)
-                val compileResult = source.outputImage(out, FileFormatOption(FileFormat.PNG, false)).description
-                out.close()
+                val compileResult = FileOutputStream(compiledFile).use { out ->
+                    source.outputImage(out, FileFormatOption(FileFormat.PNG, false)).description
+                }
                 if (!compiledFile.exists()) {
                     throw IOException("PlantUML diagram compilation failed: $sourceFile")
                 }
