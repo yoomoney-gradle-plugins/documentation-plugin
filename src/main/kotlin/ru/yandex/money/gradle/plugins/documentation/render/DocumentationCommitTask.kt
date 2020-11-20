@@ -19,7 +19,7 @@ import java.util.Objects.requireNonNull
  */
 open class DocumentationCommitTask : DefaultTask() {
     companion object {
-        const val GIT_USER_EMAIL = "SvcReleaserBackend@yamoney.ru"
+        const val GIT_USER_EMAIL = "SvcReleaserBackend@yoomoney.ru"
         const val GIT_USER_NAME = "SvcReleaserBackend"
     }
 
