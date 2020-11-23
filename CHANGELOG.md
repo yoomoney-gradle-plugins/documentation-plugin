@@ -1,3 +1,6 @@
+### NEXT_VERSION_TYPE=MAJOR|MINOR|PATCH
+### NEXT_VERSION_DESCRIPTION_BEGIN
+### NEXT_VERSION_DESCRIPTION_END
 ## [0.2.0](https://bitbucket.yamoney.ru/projects/BACKEND-GRADLE-PLUGINS/repos/documentation-plugin/pull-requests/3) (23-11-2020)
 
 * Добавлена проверка директории .puml диаграмм для отключения рендера ненужных диаграмм
