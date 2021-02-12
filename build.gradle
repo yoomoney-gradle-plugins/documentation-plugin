@@ -3,7 +3,7 @@ buildscript {
 }
 
 apply plugin: 'yamoney-gradle-project-plugin'
-apply plugin: 'yamoney-kotlin-module-plugin'
+apply plugin: 'ru.yoomoney.gradle.plugins.kotlin-plugin'
 
 pluginId = 'yamoney-documentation-plugin'
 gradlePlugin {
