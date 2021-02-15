@@ -1,7 +1,7 @@
-### NEXT_VERSION_TYPE=MINOR
-### NEXT_VERSION_DESCRIPTION_BEGIN
+## [0.3.0](https://bitbucket.yamoney.ru/projects/BACKEND-GRADLE-PLUGINS/repos/documentation-plugin/pull-requests/5) (15-02-2021)
+
 * Переименование yamoney-kotlin-module-plugin в ru.yoomoney.gradle.plugins.kotlin-plugin
-### NEXT_VERSION_DESCRIPTION_END
+
 ## [0.2.1](https://bitbucket.yamoney.ru/projects/BACKEND-GRADLE-PLUGINS/repos/documentation-plugin/pull-requests/4) (30-11-2020)
 
 * Обновлена версия kotlin 1.3.71 -> 1.3.50
