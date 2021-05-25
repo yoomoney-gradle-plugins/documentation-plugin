@@ -2,31 +2,18 @@ buildscript {
     apply from: 'project.gradle', to: buildscript
 }
 
-apply plugin: 'yamoney-gradle-project-plugin'
+apply plugin: 'ru.yoomoney.gradle.plugins.gradle-project-plugin'
 apply plugin: 'ru.yoomoney.gradle.plugins.kotlin-plugin'
 
-pluginId = 'yamoney-documentation-plugin'
+apply from: 'dependencies.gradle'
+
+artifactId = 'yoomoney-documentation-plugin'
 gradlePlugin {
     plugins {
-        componentReleasePlugin {
-            id = pluginId
+        artifactReleasePlugin {
+            id = 'ru.yoomoney.gradle.plugins.yoomoney-documentation-plugin'
             implementationClass = 'ru.yandex.money.gradle.plugins.documentation.render.DocumentationPlugin'
+            displayName = 'YooMoney documentation plugin'
         }
     }
-}
-
-dependencies {
-    configurations.compile.exclude group: 'xerces', module: 'xercesImpl'
-}
-
-dependencies {
-    optional 'com.google.code.findbugs:annotations:3.0.1'
-
-    api 'ru.yandex.money.tools:yamoney-git-client:2.5.0'
-
-    implementation 'org.asciidoctor:asciidoctor-gradle-jvm:3.3.0'
-    implementation 'net.sourceforge.plantuml:plantuml:1.2020.19'
-
-    testImplementation gradleTestKit(),
-            'ru.yandex.money.common:yamoney-test-utils:27.5.0'
 }

@@ -1,0 +1,16 @@
+dependencies {
+    configurations.compile.exclude group: 'xerces', module: 'xercesImpl'
+}
+
+dependencies {
+    optional 'com.google.code.findbugs:annotations:3.0.1'
+
+    implementation 'org.eclipse.jgit:org.eclipse.jgit:5.4.0.201906121030-r'
+
+    implementation 'org.asciidoctor:asciidoctor-gradle-jvm:3.3.0'
+    implementation 'net.sourceforge.plantuml:plantuml:1.2020.19'
+
+    testImplementation gradleTestKit(),
+            'junit:junit:4.12',
+            'org.amshove.kluent:kluent:1.34'
+}
