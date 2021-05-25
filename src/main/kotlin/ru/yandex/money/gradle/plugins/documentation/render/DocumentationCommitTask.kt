@@ -5,9 +5,9 @@ import org.gradle.api.DefaultTask
 import org.gradle.api.GradleException
 import org.gradle.api.tasks.Input
 import org.gradle.api.tasks.TaskAction
-import ru.yandex.money.tools.git.GitRepo
-import ru.yandex.money.tools.git.GitRepoFactory
-import ru.yandex.money.tools.git.GitSettings
+import ru.yandex.money.gradle.plugins.documentation.git.GitRepo
+import ru.yandex.money.gradle.plugins.documentation.git.GitRepoFactory
+import ru.yandex.money.gradle.plugins.documentation.git.GitSettings
 import java.io.File
 import java.io.IOException
 import java.util.Objects.requireNonNull
@@ -40,11 +40,11 @@ open class DocumentationCommitTask : DefaultTask() {
 
     private fun createGitRepo(): GitRepo {
         val gitPrivateSshKeyPath = requireNonNull(System.getenv("GIT_PRIVATE_SSH_KEY_PATH"), "gitPrivateSshKeyPath")
-        val gitSettings = GitSettings.builder()
-                .withEmail(GIT_USER_EMAIL)
-                .withUsername(GIT_USER_NAME)
-                .withSshKeyPath(gitPrivateSshKeyPath)
-                .build()
+        val gitSettings = GitSettings(
+                email = GIT_USER_EMAIL,
+                username = GIT_USER_NAME,
+                sshKeyPath = gitPrivateSshKeyPath
+        )
         return GitRepoFactory(gitSettings).createFromExistingDirectory(File("."))
     }
 
@@ -84,7 +84,7 @@ open class DocumentationCommitTask : DefaultTask() {
             project.logger.lifecycle("Push to the branch={}", git.currentBranchName)
             git.push {
                 it.add(branchName).setPushTags().remote = "origin"
-            }.ifPresent { resultMessage -> throw GradleException("Can't push: $resultMessage") }
+            }?.let { resultMessage -> throw GradleException("Can't push: $resultMessage") }
         } catch (exc: IOException) {
             throw GradleException("Can't push", exc)
         }
