@@ -1,13 +1,13 @@
-package ru.yandex.money.gradle.plugins.documentation.render
+package ru.yoomoney.gradle.plugins.documentation.render
 
 import org.eclipse.jgit.api.errors.GitAPIException
 import org.gradle.api.DefaultTask
 import org.gradle.api.GradleException
 import org.gradle.api.tasks.Input
 import org.gradle.api.tasks.TaskAction
-import ru.yandex.money.gradle.plugins.documentation.git.GitRepo
-import ru.yandex.money.gradle.plugins.documentation.git.GitRepoFactory
-import ru.yandex.money.gradle.plugins.documentation.git.GitSettings
+import ru.yoomoney.gradle.plugins.documentation.git.GitRepo
+import ru.yoomoney.gradle.plugins.documentation.git.GitRepoFactory
+import ru.yoomoney.gradle.plugins.documentation.git.GitSettings
 import java.io.File
 import java.io.IOException
 import java.util.Objects.requireNonNull

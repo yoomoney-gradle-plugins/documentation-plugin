@@ -1,4 +1,4 @@
-package ru.yandex.money.gradle.plugins.documentation.render
+package ru.yoomoney.gradle.plugins.documentation.render
 
 import org.gradle.api.DefaultTask
 import org.gradle.api.GradleException

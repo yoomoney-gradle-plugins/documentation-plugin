@@ -1,4 +1,4 @@
-package ru.yandex.money.gradle.plugins.documentation.render
+package ru.yoomoney.gradle.plugins.documentation.render
 
 import net.sourceforge.plantuml.FileFormat
 import net.sourceforge.plantuml.FileFormatOption

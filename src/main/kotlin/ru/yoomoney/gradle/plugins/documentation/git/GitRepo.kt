@@ -1,4 +1,4 @@
-package ru.yandex.money.gradle.plugins.documentation.git
+package ru.yoomoney.gradle.plugins.documentation.git
 
 import com.jcraft.jsch.JSch
 import com.jcraft.jsch.Session

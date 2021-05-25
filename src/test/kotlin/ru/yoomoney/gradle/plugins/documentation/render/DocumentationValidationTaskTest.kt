@@ -1,4 +1,4 @@
-package ru.yandex.money.gradle.plugins.documentation.render
+package ru.yoomoney.gradle.plugins.documentation.render
 
 import org.gradle.testkit.runner.GradleRunner
 import org.gradle.testkit.runner.TaskOutcome
