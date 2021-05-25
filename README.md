@@ -42,14 +42,10 @@
 ```groovy
 buildscript {
     repositories {
-        maven { url 'http://nexus.yamoney.ru/repository/thirdparty/' }
-        maven { url 'http://nexus.yamoney.ru/repository/central/' }
-        maven { url 'http://nexus.yamoney.ru/repository/releases/' }
-        maven { url 'http://nexus.yamoney.ru/repository/jcenter.bintray.com/' }
-        maven { url 'https://nexus.yamoney.ru/repository/gradle-plugins/' }
+        mavenCentral()
     }
     dependencies {
-        classpath 'ru.yandex.money.gradle.plugins:yamoney-documentation-render-plugin:0.+'
+        classpath 'ru.yoomoney.gradle.plugins.documentation.render.DocumentationPlugin:0.+'
     }
 }
 apply plugin: 'yamoney-documentation-render-plugin'
