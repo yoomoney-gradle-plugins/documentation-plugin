@@ -19,13 +19,15 @@ import java.util.Objects.requireNonNull
  * @since 06.11.2020
  */
 open class DocumentationCommitTask : DefaultTask() {
-    companion object {
-        const val GIT_USER_EMAIL = "SvcReleaserBackend@yoomoney.ru"
-        const val GIT_USER_NAME = "SvcReleaserBackend"
-    }
 
     @get:Input
     lateinit var rootFiles: MutableList<String>
+
+    @get:Input
+    lateinit var gitUserEmail: String
+
+    @get:Input
+    lateinit var gitUserName: String
 
     @TaskAction
     fun taskAction() {
@@ -42,9 +44,9 @@ open class DocumentationCommitTask : DefaultTask() {
     private fun createGitRepo(): GitRepo {
         val gitPrivateSshKeyPath = requireNonNull(System.getenv("GIT_PRIVATE_SSH_KEY_PATH"), "gitPrivateSshKeyPath")
         val gitSettings = GitSettings(
-                email = GIT_USER_EMAIL,
-                username = GIT_USER_NAME,
-                sshKeyPath = gitPrivateSshKeyPath
+            email = gitUserEmail,
+            username = gitUserName,
+            sshKeyPath = gitPrivateSshKeyPath
         )
         return GitRepoFactory(gitSettings).createFromExistingDirectory(File("."))
     }
@@ -53,8 +55,8 @@ open class DocumentationCommitTask : DefaultTask() {
         val addCommand = git.add()
         rootFiles.forEach { addCommand.addFilepattern(it.replace(".adoc", ".html")) }
         git.status().call().untracked
-                .filter { it.endsWith(".png") }
-                .forEach { addCommand.addFilepattern(it) }
+            .filter { it.endsWith(".png") }
+            .forEach { addCommand.addFilepattern(it) }
         addCommand.call()
     }
 
@@ -65,14 +67,15 @@ open class DocumentationCommitTask : DefaultTask() {
     private fun commit(git: GitRepo) {
         try {
             project.logger.lifecycle("Commit files from the index")
-            val command = git.commit().setMessage("[Gradle Documentation Plugin] Commit with a rendered new or modified docs")
+            val command = git.commit()
+                .setMessage("[Gradle Documentation Plugin] Commit with a rendered new or modified docs")
             rootFiles.forEach { command.setOnly(it.replace(".adoc", ".html")) }
             val statusResult = git.status().call()
             statusResult.added
-                    .plus(statusResult.modified)
-                    .plus(statusResult.changed)
-                    .filter { it.endsWith(".png") }
-                    .forEach { command.setOnly(it) }
+                .plus(statusResult.modified)
+                .plus(statusResult.changed)
+                .filter { it.endsWith(".png") }
+                .forEach { command.setOnly(it) }
             command.call()
         } catch (ex: GitAPIException) {
             throw GradleException("Can't commit changes", ex)

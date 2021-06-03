@@ -11,4 +11,14 @@ open class DocumentationExtension {
      * Рутовые файлы, которые необходимо отрендерить в .html
      */
     var rootFiles: MutableList<String> = mutableListOf()
+
+    /**
+     * Email пользователя, под которым будет произведен коммит измененных файлов в репозиторий
+     */
+    var gitUserEmail: String = "SvcReleaserBackend@yoomoney.ru"
+
+    /**
+     * Имя пользователя, под которым будет произведен коммит измененных файлов в репозиторий
+     */
+    var gitUserName: String = "SvcReleaserBackend"
 }
