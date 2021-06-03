@@ -7,6 +7,7 @@ import java.nio.file.Files
 
 /**
  * Gradle task для валидации файлов документации
+ *
  * @author Igor Popov
  * @since 06.11.2020
  */
@@ -20,21 +21,21 @@ open class DocumentationValidation : DefaultTask() {
         val anchors = mutableSetOf<String>()
         val rootPath = project.file(".").toPath()
         Files.walk(rootPath)
-                .filter {
-                    it.fileName.toString().endsWith(".adoc")
-                }
-                .forEach { file ->
-                    val adocFile = project.file(file)
-                    adocFile.forEachLine { line ->
-                        val anchor = ANCHOR_PATTERN.matchEntire(line)?.groupValues?.get(1)
-                        if (anchor != null) {
-                            if (anchors.contains(anchor)) {
-                                throw GradleException("Duplicate anchor '$anchor'")
-                            } else {
-                                anchors.add(anchor)
-                            }
+            .filter {
+                it.fileName.toString().endsWith(".adoc")
+            }
+            .forEach { file ->
+                val adocFile = project.file(file)
+                adocFile.forEachLine { line ->
+                    val anchor = ANCHOR_PATTERN.matchEntire(line)?.groupValues?.get(1)
+                    if (anchor != null) {
+                        if (anchors.contains(anchor)) {
+                            throw GradleException("Duplicate anchor '$anchor' in '${adocFile.name}'")
+                        } else {
+                            anchors.add(anchor)
                         }
                     }
                 }
+            }
     }
 }

@@ -7,6 +7,7 @@ import org.gradle.api.Project
 
 /**
  * Конфигурация плагина
+ *
  * @author Igor Popov
  * @since 06.11.2020
  */
@@ -14,7 +15,9 @@ class DocumentationPlugin : Plugin<Project> {
     override fun apply(target: Project) {
         with(target) {
             pluginManager.apply(AsciidoctorJBasePlugin::class.java)
-            val pluginSettings = extensions.create("documentation", DocumentationExtension::class.java)
+            val pluginSettings =
+                extensions.create("documentation", DocumentationExtension::class.java)
+
             tasks.create("documentationValidation", DocumentationValidation::class.java) {
                 it.group = "documentation"
                 it.description = "Validate documentation files"
@@ -27,14 +30,17 @@ class DocumentationPlugin : Plugin<Project> {
                 it.group = "documentation"
                 it.description = "Make a preprocessing for the documentation files"
             }
-            val documentationRender = tasks.create("documentationRender", AsciidoctorTask::class.java) {
-                it.sourceDir(file("."))
-                it.setOutputDir(file("."))
-            }
-            val commitEditedDocumentation = tasks.create("commitEditedDocumentation", DocumentationCommitTask::class.java) {
-                it.group = "documentation"
-                it.description = "Commit modified documentations"
-            }
+            val documentationRender =
+                tasks.create("documentationRender", AsciidoctorTask::class.java) {
+                    it.sourceDir(file("."))
+                    it.setOutputDir(file("."))
+                }
+            val commitEditedDocumentation =
+                tasks.create("commitEditedDocumentation", DocumentationCommitTask::class.java) {
+                    it.group = "documentation"
+                    it.description = "Commit modified documentations"
+                }
+
             afterEvaluate {
                 documentationRender.sources {
                     pluginSettings.rootFiles.forEach { file -> it.include(file) }

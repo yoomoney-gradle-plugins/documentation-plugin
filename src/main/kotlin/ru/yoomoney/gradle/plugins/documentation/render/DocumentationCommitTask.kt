@@ -14,6 +14,7 @@ import java.util.Objects.requireNonNull
 
 /**
  * Gradle task для коммита измененных файлов документации
+ *
  * @author Igor Popov
  * @since 06.11.2020
  */
