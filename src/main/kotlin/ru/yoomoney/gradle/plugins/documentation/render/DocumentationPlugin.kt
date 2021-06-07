@@ -46,6 +46,8 @@ class DocumentationPlugin : Plugin<Project> {
                     pluginSettings.rootFiles.forEach { file -> it.include(file) }
                 }
                 commitEditedDocumentation.rootFiles = pluginSettings.rootFiles
+                commitEditedDocumentation.gitUserEmail = pluginSettings.gitUserEmail.orNull
+                commitEditedDocumentation.gitUserName = pluginSettings.gitUserName.orNull
             }
         }
     }
