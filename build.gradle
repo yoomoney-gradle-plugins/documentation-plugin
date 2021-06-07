@@ -7,11 +7,11 @@ apply plugin: 'ru.yoomoney.gradle.plugins.kotlin-plugin'
 
 apply from: 'dependencies.gradle'
 
-artifactId = 'yoomoney-documentation-plugin'
+artifactId = 'documentation-plugin'
 gradlePlugin {
     plugins {
-        artifactReleasePlugin {
-            id = 'ru.yoomoney.gradle.plugins.yoomoney-documentation-plugin'
+        documentationPlugin {
+            id = 'ru.yoomoney.gradle.plugins.documentation-plugin'
             implementationClass = 'ru.yoomoney.gradle.plugins.documentation.render.DocumentationPlugin'
             displayName = 'YooMoney documentation plugin'
         }

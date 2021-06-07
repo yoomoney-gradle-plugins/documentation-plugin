@@ -13,7 +13,7 @@
 ресурсов (директории resources) относительный путь до этой директории относительно корня проекта.
 4. ```documentationRender``` - задача рендерит .adoc файлы, указанные в rootFiles в html, и размещает их рядом с .adoc файлами
 5. ```commitEditedDocumentation``` - задача добавляет в индекс новые диаграммы, сконвертированные задачей ```convertDiagrams```, и
-новые html файлы документации, сгенерированные задачей ```documentationRender```, и коммитит новые и измененные hml файлы документации
+новые html файлы документации, сгенерированные задачей ```documentationRender```, и коммитит новые и измененные html файлы документации
 и файлы диаграмм.
 
 Задача ```documentationPreprocess``` необходима в случае, если структура вашего репозитория следующая
@@ -45,10 +45,10 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'ru.yoomoney.gradle.plugins.documentation.render.DocumentationPlugin:0.+'
+        classpath 'ru.yoomoney.gradle.plugins.documentation-plugin:1.+'
     }
 }
-apply plugin: 'yamoney-documentation-render-plugin'
+apply plugin: 'ru.yoomoney.gradle.plugins.documentation-plugin'
 documentations {
     rootFiles = ['department-book.adoc', 'developer-book.adoc']
 }
