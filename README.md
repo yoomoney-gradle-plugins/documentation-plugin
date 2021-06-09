@@ -45,7 +45,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'ru.yoomoney.gradle.plugins.documentation-plugin:1.+'
+        classpath 'ru.yoomoney.gradle.plugins:documentation-plugin:1.+'
     }
 }
 apply plugin: 'ru.yoomoney.gradle.plugins.documentation-plugin'
