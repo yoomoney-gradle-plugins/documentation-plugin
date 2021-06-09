@@ -1,4 +1,4 @@
-package ru.yoomoney.gradle.plugins.documentation.render
+package ru.yoomoney.gradle.plugins.documentation
 
 import org.gradle.api.provider.Property
 

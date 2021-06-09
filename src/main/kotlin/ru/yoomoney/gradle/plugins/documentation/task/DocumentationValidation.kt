@@ -1,4 +1,4 @@
-package ru.yoomoney.gradle.plugins.documentation.render
+package ru.yoomoney.gradle.plugins.documentation.task
 
 import org.gradle.api.DefaultTask
 import org.gradle.api.GradleException

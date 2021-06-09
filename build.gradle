@@ -12,7 +12,7 @@ gradlePlugin {
     plugins {
         documentationPlugin {
             id = 'ru.yoomoney.gradle.plugins.documentation-plugin'
-            implementationClass = 'ru.yoomoney.gradle.plugins.documentation.render.DocumentationPlugin'
+            implementationClass = 'ru.yoomoney.gradle.plugins.documentation.DocumentationPlugin'
             displayName = 'YooMoney documentation plugin'
         }
     }

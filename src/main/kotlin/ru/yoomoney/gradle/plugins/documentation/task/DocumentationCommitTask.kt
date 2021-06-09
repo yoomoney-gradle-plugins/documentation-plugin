@@ -1,4 +1,4 @@
-package ru.yoomoney.gradle.plugins.documentation.render
+package ru.yoomoney.gradle.plugins.documentation.task
 
 import org.eclipse.jgit.api.errors.GitAPIException
 import org.gradle.api.DefaultTask

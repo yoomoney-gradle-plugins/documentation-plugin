@@ -1,9 +1,13 @@
-package ru.yoomoney.gradle.plugins.documentation.render
+package ru.yoomoney.gradle.plugins.documentation
 
 import org.asciidoctor.gradle.jvm.AsciidoctorJBasePlugin
 import org.asciidoctor.gradle.jvm.AsciidoctorTask
 import org.gradle.api.Plugin
 import org.gradle.api.Project
+import ru.yoomoney.gradle.plugins.documentation.task.DocumentationCommitTask
+import ru.yoomoney.gradle.plugins.documentation.task.DocumentationConvertDiagramTask
+import ru.yoomoney.gradle.plugins.documentation.task.DocumentationPreprocessTask
+import ru.yoomoney.gradle.plugins.documentation.task.DocumentationValidation
 
 /**
  * Конфигурация плагина

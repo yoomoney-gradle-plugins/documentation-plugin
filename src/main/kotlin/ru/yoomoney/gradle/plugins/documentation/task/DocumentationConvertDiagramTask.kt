@@ -1,4 +1,4 @@
-package ru.yoomoney.gradle.plugins.documentation.render
+package ru.yoomoney.gradle.plugins.documentation.task
 
 import net.sourceforge.plantuml.FileFormat
 import net.sourceforge.plantuml.FileFormatOption
