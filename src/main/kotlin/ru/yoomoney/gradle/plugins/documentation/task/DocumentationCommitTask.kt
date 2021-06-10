@@ -31,6 +31,11 @@ open class DocumentationCommitTask : DefaultTask() {
 
     @TaskAction
     fun taskAction() {
+        // validate inputs: task should not be executed if 'gitUserEmail' or 'gitUserName' is not set
+        if (gitUserEmail == null || gitUserName == null) {
+            throw GradleException("Cannot execute documentation task: gitUserEmail [$gitUserEmail] or gitUserName[$gitUserName] is missing")
+        }
+
         val git = createGitRepo()
         addFiles(git)
         if (hasChanges(git)) {
@@ -42,9 +47,6 @@ open class DocumentationCommitTask : DefaultTask() {
     }
 
     private fun createGitRepo(): GitRepo {
-        if (gitUserEmail == null || gitUserName == null) {
-            throw GradleException("Cannot execute documentation commit: gitUserEmail [$gitUserEmail] or gitUserName[$gitUserName] is missing")
-        }
         val gitPrivateSshKeyPath = requireNonNull(System.getenv("GIT_PRIVATE_SSH_KEY_PATH"), "gitPrivateSshKeyPath")
         val gitSettings = GitSettings(
             email = gitUserEmail!!,
