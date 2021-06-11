@@ -1,4 +1,4 @@
-package ru.yandex.money.gradle.plugins.documentation.render
+package ru.yoomoney.gradle.plugins.documentation.task
 
 import net.sourceforge.plantuml.FileFormat
 import net.sourceforge.plantuml.FileFormatOption
@@ -12,6 +12,7 @@ import java.nio.file.Paths
 
 /**
  * Gradle task для конвертации plantuml диаграмм в .png
+ *
  * @author Igor Popov
  * @since 09.11.2020
  */
@@ -21,7 +22,8 @@ open class DocumentationConvertDiagramTask : DefaultTask() {
         project.fileTree(".").filter {
             it.parentFile.name == "resources" && (it.name.endsWith(".puml") || it.name.endsWith(".plantuml"))
         }.forEach { sourceFile ->
-            val sourceFileName = sourceFile.name.substring(0, sourceFile.name.lastIndexOf('.')) + ".png"
+            val sourceFileName =
+                "${sourceFile.name.substring(0, sourceFile.name.lastIndexOf('.'))}.png"
             val compiledFile = project.file(Paths.get(sourceFile.parent, sourceFileName).toString())
             if (!compiledFile.exists() || compiledFile.lastModified() < sourceFile.lastModified()) {
                 if (!compiledFile.exists()) {
@@ -37,9 +39,9 @@ open class DocumentationConvertDiagramTask : DefaultTask() {
                 }
                 if (compileResult.contains("Error")) {
                     val errFile =
-                            File(compiledFile.path.substring(0, compiledFile.path.lastIndexOf('.')) + ".error.png")
+                            File("${compiledFile.path.substring(0, compiledFile.path.lastIndexOf('.'))}.error.png")
                     compiledFile.renameTo(errFile)
-                    throw IOException("PlantUML diagram compilation errors, see image file: " + errFile.path)
+                    throw IOException("PlantUML diagram compilation errors, see image file: ${errFile.path}")
                 }
             }
         }

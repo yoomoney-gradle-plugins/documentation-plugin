@@ -1,4 +1,4 @@
-package ru.yandex.money.gradle.plugins.documentation.render
+package ru.yoomoney.gradle.plugins.documentation.task
 
 import org.amshove.kluent.`should be equal to`
 import org.gradle.testkit.runner.GradleRunner
