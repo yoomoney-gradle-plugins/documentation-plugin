@@ -1,10 +1,10 @@
-### NEXT_VERSION_TYPE=MAJOR
-### NEXT_VERSION_DESCRIPTION_BEGIN
+## [1.0.0]() (11-06-2021)
+
 * Plugin build files and sources have been migrated to GitHub.
 * Packages have been renamed to reflect company name change
 * Build migrated to TravisCI instead of internal Jenkins
 * Internal dependencies removed from project
-### NEXT_VERSION_DESCRIPTION_END
+
 ## [0.3.0]() (15-02-2021)
 
 * Переименование yamoney-kotlin-module-plugin в ru.yoomoney.gradle.plugins.kotlin-plugin
