@@ -2,21 +2,15 @@ package ru.yoomoney.gradle.plugins.documentation.git
 
 import com.jcraft.jsch.JSch
 import com.jcraft.jsch.Session
+import org.eclipse.jgit.api.AddCommand
 import org.eclipse.jgit.api.CommitCommand
+import org.eclipse.jgit.api.DiffCommand
 import org.eclipse.jgit.api.Git
 import org.eclipse.jgit.api.PushCommand
-import org.eclipse.jgit.api.TagCommand
 import org.eclipse.jgit.api.StatusCommand
-import org.eclipse.jgit.api.AddCommand
-import org.eclipse.jgit.api.DiffCommand
 import org.eclipse.jgit.api.TransportCommand
-import org.eclipse.jgit.api.LogCommand
 import org.eclipse.jgit.api.errors.GitAPIException
-import org.eclipse.jgit.lib.ObjectId
-import org.eclipse.jgit.lib.Ref
-import org.eclipse.jgit.lib.Constants
 import org.eclipse.jgit.lib.Repository
-import org.eclipse.jgit.lib.PersonIdent
 import org.eclipse.jgit.transport.JschConfigSessionFactory
 import org.eclipse.jgit.transport.OpenSshConfig
 import org.eclipse.jgit.transport.SshTransport
@@ -67,52 +61,12 @@ class GitRepo internal constructor(private val git: Git, private val settings: G
     }
 
     /**
-     * Получение коммита, на который указывает head
-     *
-     * @return ObjectId коммита, на который указывает head
-     */
-    val headCommit: ObjectId
-        get() = git.repository.resolve(Constants.HEAD)
-
-    /**
-     * Получение списка существующих тегов
-     */
-    fun listTags(): List<Ref> {
-        return git.repository.refDatabase.getRefsByPrefix(Constants.R_TAGS)
-    }
-
-    /**
-     * Получение git remote origin url
-     * см. https://git-scm.com/book/en/v2/Git-Basics-Working-with-Remotes
-     * см. https://git-scm.com/docs/git-remote
-     *
-     * @return ссылку вида ssh://git@github.com:yoomoney-gradle-plugins/artifact-release-plugin.git
-     */
-    val remoteOriginUrl: String
-        get() = git.repository.config
-                .getString("remote", "origin", "url")
-
-    /**
      * Получение объекта с данными по репозитории
      *
      * @return данные репозитория
      */
     val repository: Repository
         get() = git.repository
-
-    /**
-     * Прокси для вызова [TagCommand]
-     */
-    fun tag(): TagCommand {
-        return git.tag().setTagger(PersonIdent(settings.username, settings.email))
-    }
-
-    /**
-     * Прокси для вызова [LogCommand]
-     */
-    fun log(): LogCommand {
-        return git.log()
-    }
 
     /**
      * Прокси для вызова [DiffCommand]
