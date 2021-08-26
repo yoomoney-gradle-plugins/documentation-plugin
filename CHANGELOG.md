@@ -1,7 +1,7 @@
-### NEXT_VERSION_TYPE=MINOR
-### NEXT_VERSION_DESCRIPTION_BEGIN
+## [1.1.0](https://github.com/yoomoney/documentation-plugin/pull/2) (26-08-2021)
+
 * Переезд организации yoomoney-gradle-plugins -> yoomoney
-### NEXT_VERSION_DESCRIPTION_END
+
 ## [1.0.0]() (11-06-2021)
 
 * Plugin build files and sources have been migrated to GitHub.
