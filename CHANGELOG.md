@@ -1,5 +1,6 @@
-### NEXT_VERSION_TYPE=MAJOR|MINOR|PATCH
+### NEXT_VERSION_TYPE=MINOR
 ### NEXT_VERSION_DESCRIPTION_BEGIN
+* Переезд организации yoomoney-gradle-plugins -> yoomoney
 ### NEXT_VERSION_DESCRIPTION_END
 ## [1.0.0]() (11-06-2021)
 

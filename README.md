@@ -1,4 +1,8 @@
-# documentation-render-plugin
+[![Build Status](https://travis-ci.com/yoomoney/documentation-plugin.svg?branch=master)](https://travis-ci.com/yoomoney/documentation-plugin)
+[![codecov](https://codecov.io/gh/yoomoney/documentation-plugin/branch/master/graph/badge.svg)](https://codecov.io/gh/yoomoney/documentation-plugin)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+# documentation-plugin
 
 Предоставляет gradle task'и для проверки и конвертации документации из формата Asciidoc в Html
 
